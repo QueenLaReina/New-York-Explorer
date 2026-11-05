@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" role="img" aria-label="Illustrated New York skyline">
+  <rect width="800" height="470" fill="#d9e8dc"/>
+  <circle cx="640" cy="95" r="42" fill="#efc968"/>
+  <path d="M0 310h800v160H0z" fill="#b9d1c3"/>
+  <g fill="#315b4e">
+    <path d="M22 218h92v252H22zM114 270h65v200h-65zM182 190h70v280h-70zM250 242h78v228h-78zM550 235h75v235h-75zM620 280h62v190h-62zM680 210h100v260H680z"/>
+    <path d="M286 124h41v346h-41zM278 124h57v8h-57zM297 83h18v41h-18zM304 47h4v36h-4z"/>
+  </g>
+  <g fill="#efc968">
+    <path d="M39 237h12v19H39zm27 0h12v19H66zm27 0h12v19H93zM39 277h12v19H39zm27 0h12v19H66zm27 0h12v19H93zM196 211h12v20h-12zm27 0h12v20h-12zm-27 40h12v20h-12zm27 0h12v20h-12zM294 153h8v11h-8zm15 0h8v11h-8zm-15 28h8v11h-8zm15 0h8v11h-8zm-15 28h8v11h-8zm15 0h8v11h-8zM568 255h12v18h-12zm26 0h12v18h-12zm-26 37h12v18h-12zm26 0h12v18h-12zM701 232h13v20h-13zm30 0h13v20h-13zm-30 40h13v20h-13zm30 0h13v20h-13z"/>
+  </g>
+  <path d="M0 354h800v116H0z" fill="#1d302d"/>
+  <path d="M0 384h800M0 422h800" stroke="#d9e8dc" stroke-width="3" opacity=".55"/>
+  <g fill="#efc968">
+    <path d="M37 365h9v11h-9zm25 0h9v11h-9zm75 0h9v11h-9zm190 0h9v11h-9zm230 0h9v11h-9zm102 0h9v11h-9z"/>
+  </g>
+  <g transform="translate(482 344)">
+    <path d="M0 21h86l-8-20H14z" fill="#d95d3f"/>
+    <path d="M20 1h44l11 20H13z" fill="#f5f1e8"/>
+    <path d="M29 4h12v12H24zm18 0h12l8 12H47z" fill="#9bb9b2"/>
+    <circle cx="19" cy="23" r="8" fill="#1d302d"/><circle cx="67" cy="23" r="8" fill="#1d302d"/>
+    <circle cx="19" cy="23" r="3" fill="#f5f1e8"/><circle cx="67" cy="23" r="3" fill="#f5f1e8"/>
+  </g>
+</svg>

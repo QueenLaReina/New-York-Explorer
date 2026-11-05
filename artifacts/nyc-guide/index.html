@@ -1,24 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>New York City Guide</title>
-    <meta name="description" content="New York City Guide — built on Replit. Update this description to reflect the app." />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="New York City Guide" />
-    <meta property="og:description" content="New York City Guide — built on Replit. Update this description to reflect the app." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="New York City Guide" />
-    <meta name="twitter:description" content="New York City Guide — built on Replit. Update this description to reflect the app." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A friendly pocket field guide to New York City: local facts, pizza, and a place to keep your favorite things." />
+    <meta name="theme-color" content="#f5f1e8" />
+    <title>Little Guide to New York City</title>
+    <link rel="icon" type="image/svg+xml" href="./images/nyc-mark.svg" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Little Guide to NYC, home">
+          <span class="brand-mark" aria-hidden="true">NY</span>
+          <span class="brand-copy"><strong>Little Guide to NYC</strong><small>FIELD NOTES · NO. 001</small></span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#facts">Quick facts</a>
+          <a href="#local">Local notes</a>
+          <a href="#likes">Your list</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <p class="eyebrow">A pocket-size city primer</p>
+            <h1 id="hero-title">So, you're<br />new to <em>New York.</em></h1>
+            <p class="hero-intro">Start with the things locals talk about: a few city facts, a very good slice, and the small details that make this place feel like nowhere else.</p>
+            <a class="hero-link" href="#facts">Take a look around <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-art">
+            <span class="hero-stamp" aria-hidden="true">Five<br />boroughs<br />one city</span>
+            <img src="./images/nyc-skyline.svg" alt="Illustrated New York skyline with the Empire State Building, city rooftops, and a taxi" />
+            <span class="hero-caption">New York, in a nutshell</span>
+          </div>
+        </section>
+
+        <section class="facts-section section-rule" id="facts" aria-labelledby="facts-title">
+          <div class="section-heading">
+            <div><p class="section-kicker">01 / Get your bearings</p><h2 id="facts-title">Quick facts</h2></div>
+            <p>A few good things to know before you go.</p>
+          </div>
+          <div class="facts-layout">
+            <p class="facts-note">New York City is big, busy, and full of little surprises. These are the easy starting points.</p>
+            <!-- Keep these three beginner facts in a semantic unordered list. -->
+            <ul class="facts-list">
+              <li><span class="fact-number">01</span><strong>The Big Apple</strong></li>
+              <li><span class="fact-number">02</span><strong>About 8.48 million people call NYC home (2024 estimate)</strong></li>
+              <li><span class="fact-number">03</span><strong>New York became a state in 1788</strong></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- A separate leader section makes the city official easy to find. -->
+        <section class="leader-section section-rule" aria-labelledby="leader-title">
+          <div>
+            <p class="section-kicker">A note from City Hall</p>
+            <h2 id="leader-title">City leader</h2>
+          </div>
+          <div class="leader-line">
+            <strong>Zohran Mamdani</strong>
+            <span>Mayor of New York City</span>
+          </div>
+        </section>
+
+        <section class="feature-grid" id="local" aria-label="Local notes">
+          <article class="feature food-copy" aria-labelledby="food-title">
+            <p class="section-kicker">02 / An essential bite</p>
+            <div class="food-visual">
+              <img src="./images/nyc-pizza.svg" alt="Illustration of a New York-style pizza slice with tomato sauce, melted cheese, and basil" />
+              <span class="food-tag">Fold it, don't overthink it</span>
+            </div>
+            <h2 id="food-title">New York pizza</h2>
+            <p>Thin, wide, and made for walking. Pick up a slice, fold it lengthwise, and let the crisp edge do the work. There's no wrong time for a neighborhood pizzeria.</p>
+          </article>
+          <article class="feature bird-copy" aria-labelledby="bird-title">
+            <p class="section-kicker">03 / A little nature</p>
+            <div class="bird-stage">
+              <button class="bird-button" id="bird-button" type="button" aria-label="Make the eastern bluebird flutter">
+                <img class="bird" id="bluebird" src="./images/eastern-bluebird.svg" alt="Eastern bluebird, New York State's state bird, with vivid blue wings and a warm orange breast" />
+              </button>
+            </div>
+            <h2 id="bird-title">State bird</h2>
+            <p>The eastern bluebird is New York's state bird. Look for its bright blue feathers and rusty-orange chest in open fields and parks.</p>
+            <p class="bird-hint">Tap the bird to see it flutter</p>
+          </article>
+        </section>
+
+        <section class="likes-section" id="likes" aria-labelledby="likes-title">
+          <div class="likes-heading">
+            <p class="section-kicker">04 / Your field notes</p>
+            <h2 id="likes-title">Things I like</h2>
+            <p>Make this guide yours. Add a spot, a snack, or something you want to remember.</p>
+          </div>
+          <div>
+            <form class="list-form" id="likes-form">
+              <label for="like-input">Add a thing you like in New York</label>
+              <input id="like-input" name="like" type="text" placeholder="A tiny bookstore in the West Village…" autocomplete="off" />
+              <button type="submit">Add to list</button>
+            </form>
+            <p class="form-status" id="form-status" aria-live="polite"></p>
+            <ul class="likes-list" id="likes-list" aria-label="Things I like list">
+              <li class="list-empty" id="list-empty">Your list is waiting for its first note.</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <strong>Little Guide to NYC</strong>
+        <span>Made for curious first-timers · Keep looking up</span>
+      </footer>
+    </div>
+    <script src="./script.js"></script>
   </body>
 </html>
