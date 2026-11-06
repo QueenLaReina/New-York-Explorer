@@ -1,0 +1,1 @@
+- [NYC guide styling](nyc-guide-styling.md) — Preserve current guide content and font pairing when using new visual references.
