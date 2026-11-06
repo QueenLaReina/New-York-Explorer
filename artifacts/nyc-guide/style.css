@@ -415,3 +415,33 @@ body {
     min-height: 0;
   }
 }
+
+/* Reuse the flowing display script on each section title. */
+.section-heading h2,
+.food-copy h2,
+.bird-copy h2,
+.likes-heading h2,
+.leader-section h2 {
+  font-family: "Great Vibes", cursive;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.section-heading h2 {
+  font-size: clamp(46px, 5.2vw, 70px);
+}
+
+.food-copy h2,
+.bird-copy h2 {
+  font-size: 48px;
+}
+
+.leader-section h2 {
+  font-size: clamp(42px, 4vw, 58px);
+}
+
+.likes-heading h2 {
+  font-size: clamp(50px, 6vw, 76px);
+}
