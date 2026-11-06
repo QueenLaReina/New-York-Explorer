@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=DM+Mono:wght@400;500&family=Great+Vibes&family=Libre+Baskerville:wght@400;700&display=swap');
 
 /* These colors and font choices are shared across the page. */
 :root {
@@ -12,7 +12,7 @@
   --yellow: #ffd17e;
   --line: rgba(145, 186, 255, .25);
   --display: "Bodoni Moda", Georgia, serif;
-  --body: "Manrope", sans-serif;
+  --body: "Libre Baskerville", Georgia, serif;
   --mono: "DM Mono", monospace;
 }
 
@@ -262,6 +262,12 @@ body {
 
 .hero h1 em {
   color: var(--green-deep);
+  display: inline-block;
+  font-family: "Great Vibes", cursive;
+  font-size: 1.14em;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: .01em;
   text-shadow: 0 0 24px rgba(145, 186, 255, .3);
 }
 
