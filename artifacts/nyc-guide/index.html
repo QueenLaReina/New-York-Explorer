@@ -4,23 +4,28 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="A friendly pocket field guide to New York City: local facts, pizza, and a place to keep your favorite things." />
-    <meta name="theme-color" content="#f6f4ef" />
+    <meta name="theme-color" content="#11172b" />
     <title>Little Guide to New York City</title>
     <link rel="icon" type="image/svg+xml" href="./images/nyc-mark.svg" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./twilight-editorial.css" />
   </head>
   <body>
+    <div class="twilight-guide">
     <div class="page-shell">
       <header class="topbar">
         <a class="brand" href="#top" aria-label="Little Guide to NYC, home">
           <span class="brand-mark" aria-hidden="true">NY</span>
           <span class="brand-copy"><strong>Little Guide to NYC</strong><small>FIELD NOTES · NO. 001</small></span>
         </a>
-        <nav class="nav-links" aria-label="Main navigation">
+        <nav class="nav-links" id="main-nav" aria-label="Main navigation">
           <a href="#facts">Quick facts</a>
           <a href="#local">Local notes</a>
           <a href="#likes">Your list</a>
         </nav>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="true" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
       </header>
 
       <main id="top">
@@ -64,6 +69,17 @@
             <strong>Zohran Mamdani</strong>
             <span>Mayor of New York City</span>
           </div>
+        </section>
+
+        <section class="city-details" aria-label="Lower Manhattan at dusk">
+          <figure class="detail-frame detail-spire">
+            <img src="./images/nyc-dusk-skyline.png" alt="One World Trade Center rising above the Lower Manhattan skyline at dusk" />
+            <figcaption><span>01 / Skyline</span><em>A city at dusk</em></figcaption>
+          </figure>
+          <figure class="detail-frame detail-reflection">
+            <img src="./images/nyc-dusk-skyline.png" alt="City lights and the twilight sky reflected across the water" />
+            <figcaption><span>02 / River light</span><em>The waterline after sundown</em></figcaption>
+          </figure>
         </section>
 
         <section class="feature-grid" id="local" aria-label="Local notes">
@@ -113,6 +129,7 @@
         <strong>Little Guide to NYC</strong>
         <span>Made for curious first-timers · Keep looking up</span>
       </footer>
+    </div>
     </div>
     <script src="./script.js"></script>
   </body>

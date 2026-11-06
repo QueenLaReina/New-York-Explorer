@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 220" role="img" aria-label="Eastern bluebird">
+  <path d="M46 142c22-13 27-43 57-58 27-13 58-3 75 15 12 13 18 30 13 45-6 20-26 34-55 36-23 2-50-6-68-17-14-8-29-9-42-7 5-6 12-11 20-14z" fill="#3d83a6"/>
+  <path d="M117 91c22-15 49-8 63 8 12 13 16 28 10 42-7 18-28 29-52 31 14-18 14-54-21-81z" fill="#245d7d"/>
+  <path d="M99 128c20-22 61-28 83-13 13 9 18 22 11 35-8 16-30 27-55 27-25 0-51-8-67-21 6-11 16-21 28-28z" fill="#d77c45"/>
+  <path d="M58 137c7-26 29-47 53-52 11 9 18 22 20 37-20 8-32 25-37 46-17-9-28-19-36-31z" fill="#4b98bd"/>
+  <path d="m43 141-26 4 22 12z" fill="#dfae54"/>
+  <circle cx="62" cy="119" r="4.4" fill="#1d302d"/>
+  <circle cx="63" cy="118" r="1.2" fill="#f5f1e8"/>
+  <path d="M90 171c13 13 22 20 37 24m-30-30c11 15 18 22 34 30" fill="none" stroke="#1d302d" stroke-width="4" stroke-linecap="round"/>
+  <path d="M110 193h23m-9 0 7 7m-7-7-6 7" fill="none" stroke="#d95d3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M104 114c17-15 38-18 54-9" fill="none" stroke="#d5e7ed" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+</svg>

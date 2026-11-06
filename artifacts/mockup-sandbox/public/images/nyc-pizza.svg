@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="A slice of New York pizza">
+  <ellipse cx="150" cy="246" rx="103" ry="17" fill="#c9a885" opacity=".42"/>
+  <path d="M48 49 257 221c8 7 2 20-9 18L36 210c-12-1-17-15-8-24z" fill="#c97940"/>
+  <path d="M57 64 241 216 46 198c-4 0-7-5-4-8z" fill="#f1c96e"/>
+  <path d="M58 63 241 216 226 204 69 75z" fill="#f7df9c"/>
+  <path d="M69 75 226 204c-18-10-30-13-47-14-19-2-32 8-48 5-16-3-23-17-42-23-17-5-31 0-44-4z" fill="#d95d3f"/>
+  <g fill="#b94331">
+    <circle cx="115" cy="109" r="12"/><circle cx="170" cy="148" r="13"/><circle cx="92" cy="161" r="11"/><circle cx="209" cy="185" r="10"/>
+  </g>
+  <g fill="#6b8d53">
+    <path d="M145 118c-3-14 10-22 19-17-2 11-8 16-19 17zm4 2c13-7 23 0 21 11-10 1-17-3-21-11z"/>
+    <path d="M113 178c-1-12 10-18 18-13-2 9-8 13-18 13zm4 2c11-6 19 0 17 9-8 1-14-2-17-9z"/>
+  </g>
+  <path d="M31 190c-8 10-2 21 10 23l207 26c13 2 20-12 10-21l-17-14c7 9 0 15-9 14L48 194c-7-1-10-7-8-13z" fill="#b96e3e"/>
+  <path d="M48 195c54 7 122 16 187 26" fill="none" stroke="#f8dda0" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+</svg>

@@ -37,3 +37,35 @@ birdButton.addEventListener("click", flutterBird);
 birdImage.addEventListener("animationend", () => {
   birdImage.classList.remove("is-shaking");
 });
+
+// Keep the full navigation visible on larger screens and collapsible on phones.
+const siteHeader = document.querySelector(".topbar");
+const mainNavigation = document.querySelector("#main-nav");
+const menuToggle = document.querySelector("#menu-toggle");
+const desktopNavigation = window.matchMedia("(min-width: 621px)");
+
+function setNavigationForViewport() {
+  const isDesktop = desktopNavigation.matches;
+  siteHeader.classList.toggle("menu-closed", !isDesktop);
+  menuToggle.setAttribute("aria-expanded", String(isDesktop));
+  menuToggle.setAttribute("aria-label", isDesktop ? "Hide navigation" : "Open navigation");
+}
+
+setNavigationForViewport();
+desktopNavigation.addEventListener("change", setNavigationForViewport);
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+  const nextOpen = !isOpen;
+  siteHeader.classList.toggle("menu-closed", !nextOpen);
+  menuToggle.setAttribute("aria-expanded", String(nextOpen));
+  menuToggle.setAttribute("aria-label", nextOpen ? "Hide navigation" : "Open navigation");
+});
+
+mainNavigation.addEventListener("click", (event) => {
+  if (event.target instanceof HTMLAnchorElement && !desktopNavigation.matches) {
+    siteHeader.classList.add("menu-closed");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+  }
+});
