@@ -42,7 +42,7 @@ birdImage.addEventListener("animationend", () => {
 const siteHeader = document.querySelector(".topbar");
 const mainNavigation = document.querySelector("#main-nav");
 const menuToggle = document.querySelector("#menu-toggle");
-const desktopNavigation = window.matchMedia("(min-width: 621px)");
+const desktopNavigation = window.matchMedia("(min-width: 761px)");
 
 function setNavigationForViewport() {
   const isDesktop = desktopNavigation.matches;

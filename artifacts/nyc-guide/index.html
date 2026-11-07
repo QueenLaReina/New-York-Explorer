@@ -4,15 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="A friendly pocket field guide to New York City: local facts, pizza, and a place to keep your favorite things." />
-    <meta name="theme-color" content="#11172b" />
+    <meta name="theme-color" content="#1d5fa8" />
     <title>Little Guide to New York City</title>
     <link rel="icon" type="image/svg+xml" href="./images/nyc-mark.svg" />
     <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./twilight-editorial.css" />
   </head>
   <body>
-    <div class="twilight-guide">
+    <div class="fair-guide">
     <div class="page-shell">
+      <div class="utility-bar">
+        <div class="utility-mark" aria-hidden="true">NY</div>
+        <span>FIELD NOTES · NO. 001</span>
+        <a href="#facts">Explore the city <span aria-hidden="true">↓</span></a>
+      </div>
       <header class="topbar">
         <a class="brand" href="#top" aria-label="Little Guide to NYC, home">
           <span class="brand-mark" aria-hidden="true">NY</span>
@@ -27,6 +31,10 @@
           <span></span><span></span><span></span>
         </button>
       </header>
+      <div class="city-ribbon" role="group" aria-label="New York City at dusk">
+        <span>Five boroughs · One city</span>
+        <span>Dusk over Lower Manhattan</span>
+      </div>
 
       <main id="top">
         <section class="hero" aria-labelledby="hero-title">
@@ -37,9 +45,7 @@
             <a class="hero-link" href="#facts">Take a look around <span aria-hidden="true">→</span></a>
           </div>
           <div class="hero-art">
-            <span class="hero-stamp" aria-hidden="true">Five<br />boroughs<br />one city</span>
             <img src="./images/nyc-dusk-skyline.png" alt="Lower Manhattan skyline glowing at dusk, with One World Trade Center above the river and violet-blue clouds across the sky" />
-            <span class="hero-caption">Dusk over Lower Manhattan</span>
           </div>
         </section>
 
@@ -69,17 +75,6 @@
             <strong>Zohran Mamdani</strong>
             <span>Mayor of New York City</span>
           </div>
-        </section>
-
-        <section class="city-details" aria-label="Lower Manhattan at dusk">
-          <figure class="detail-frame detail-spire">
-            <img src="./images/nyc-dusk-skyline.png" alt="One World Trade Center rising above the Lower Manhattan skyline at dusk" />
-            <figcaption><span>01 / Skyline</span><em>A city at dusk</em></figcaption>
-          </figure>
-          <figure class="detail-frame detail-reflection">
-            <img src="./images/nyc-dusk-skyline.png" alt="City lights and the twilight sky reflected across the water" />
-            <figcaption><span>02 / River light</span><em>The waterline after sundown</em></figcaption>
-          </figure>
         </section>
 
         <section class="feature-grid" id="local" aria-label="Local notes">
