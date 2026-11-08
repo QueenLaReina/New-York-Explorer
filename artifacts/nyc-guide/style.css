@@ -267,6 +267,7 @@ a { color: inherit; }
   padding: 66px max(24px, calc((100% - 1240px) / 2)) 72px;
   background: #fff;
 }
+
 .section-heading {
   display: flex;
   justify-content: space-between;
@@ -274,6 +275,7 @@ a { color: inherit; }
   gap: 24px;
   margin-bottom: 28px;
 }
+
 .section-heading h2,
 .leader-section h2,
 .food-copy h2,
@@ -284,12 +286,27 @@ a { color: inherit; }
   font: 600 clamp(40px, 5vw, 64px)/1.02 var(--display);
   letter-spacing: -.055em;
 }
+
+.section-heading h2 b,
+.food-copy h2 b,
+.bird-copy h2 b {
+  font-family: var(--script) !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: 1.08em !important;
+  color: inherit !important;
+  letter-spacing: 0.015em !important;
+  display: inline-block;
+  margin-right: 0.18em;
+}
+
 .section-heading > p {
   margin: 0 0 8px;
   color: var(--fair-muted);
   font-size: 11px;
   font-style: italic;
 }
+
 .facts-layout {
   display: grid;
   grid-template-columns: .7fr 1.3fr;
@@ -406,8 +423,25 @@ a { color: inherit; }
   letter-spacing: .06em;
   text-transform: uppercase;
 }
+
 .food-copy h2,
-.bird-copy h2 { font-size: clamp(38px, 4vw, 50px); }
+.bird-copy h2 { 
+  font-size: clamp(38px, 4vw, 50px); 
+}
+
+/* Inherits the exact same blue as the heading, but applies the hero cursive styling */
+  .food-copy h2 b,
+  .bird-copy h2 b {
+    font-family: var(--script) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    font-size: 1.08em !important;
+    color: inherit !important;
+    letter-spacing: 0.015em !important;
+    display: inline-block;
+  }
+
+
 .food-copy > p:not(.section-kicker),
 .bird-copy > p:not(.section-kicker):not(.bird-hint) {
   max-width: 440px;
@@ -415,6 +449,7 @@ a { color: inherit; }
   font-size: 11px;
   line-height: 1.9;
 }
+
 .bird-stage {
   background: linear-gradient(145deg, #d9eff7, #f2f8fb);
 }
@@ -612,6 +647,7 @@ a { color: inherit; }
   .likes-section { grid-template-columns: 1fr; gap: 18px; }
 }
 
+
 @media (max-width: 480px) {
   .brand-mark { width: 42px; height: 42px; }
   .brand-copy strong { font-size: 18px; }
@@ -636,6 +672,279 @@ a { color: inherit; }
   .list-form button { min-height: 44px; }
   .footer { flex-direction: column; gap: 8px; }
 }
+
+  /* ===== Activity 1: Ask the City Guide (Styled for NYC State Fair Theme) ===== */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .guide-section {
+    padding: 66px max(24px, calc((100% - 1240px) / 2)) 74px;
+    background: var(--fair-paper);
+    border-top: 6px solid var(--fair-yellow);
+  }
+
+  .guide-inner {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: clamp(24px, 5vw, 64px);
+    max-width: 1240px;
+    margin: auto;
+  }
+
+  .guide-heading h2 {
+    margin: 9px 0 16px;
+    color: var(--fair-blue-dark);
+    font: 600 clamp(40px, 5vw, 64px)/1.02 var(--display);
+    letter-spacing: -.055em;
+  }
+
+  .guide-heading h2 em {
+    color: var(--fair-orange);
+    font-family: var(--script);
+    font-weight: 400;
+    font-size: 0.72em; /* Brings the size down to balance with CITY */
+    letter-spacing: normal;
+    text-transform: capitalize; /* Optional: "Guide" looks much cleaner in script than all-caps "GUIDE" */
+  }
+
+  .guide-heading > p:not(.section-kicker) {
+    max-width: 420px;
+    color: var(--fair-muted);
+    font-size: 11px;
+    line-height: 1.85;
+  }
+
+  /* Prompt Lab card */
+  .prompt-lab {
+    margin-top: 24px;
+    padding: 22px 24px;
+    background: #fff;
+    border: 1px solid var(--fair-line);
+    border-top: 4px solid var(--fair-orange);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(18, 63, 119, .06);
+  }
+
+  .lab-title {
+    margin: 0 0 14px;
+    color: var(--fair-orange);
+    font: 9px var(--mono);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .prompt-lab label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--fair-ink);
+    font-family: var(--mono);
+  }
+
+  .prompt-lab output {
+    color: var(--fair-blue);
+    font: 700 11px var(--mono);
+  }
+
+  .prompt-lab input[type="range"] {
+    width: 100%;
+    accent-color: var(--fair-orange);
+    margin: 6px 0 3px;
+    cursor: pointer;
+  }
+
+  .lab-hint {
+    margin: 0 0 14px;
+    color: var(--fair-muted);
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .system-prompt summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 10px;
+    color: var(--fair-blue-dark);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    padding: 4px 0;
+  }
+
+  .system-prompt pre {
+    margin-top: 8px;
+    white-space: pre-wrap;
+    font: 10px/1.6 var(--mono);
+    color: var(--fair-ink);
+    background: var(--fair-paper);
+    border: 1px solid var(--fair-line);
+    border-radius: 6px;
+    padding: 12px;
+    max-height: 220px;
+    overflow: auto;
+  }
+
+  /* Chat container panel */
+  .chat-panel {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--fair-line);
+    border-top: 4px solid var(--fair-blue);
+    border-radius: 16px;
+    padding: 24px;
+    min-height: 520px;
+    box-shadow: 0 8px 24px rgba(18, 63, 119, .08);
+  }
+
+  .chat-log {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    overflow-y: auto;
+    max-height: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .chat-empty {
+    color: var(--fair-muted);
+    font-size: 11px;
+    font-style: italic;
+    padding: 12px 0;
+  }
+
+  /* Message bubbles */
+  .bubble {
+    max-width: 86%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .bubble p {
+    margin: 5px 0 0;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+
+  .bubble small {
+    display: block;
+    margin-top: 6px;
+    color: var(--fair-muted);
+    font: 9px var(--mono);
+  }
+
+  .bubble-who {
+    font: 700 9px var(--mono);
+    letter-spacing: .12em;
+  }
+
+  .bubble.user {
+    align-self: flex-end;
+    background: var(--fair-blue-dark);
+    color: #fff;
+    border-bottom-right-radius: 2px;
+  }
+
+  .bubble.user .bubble-who {
+    color: var(--fair-yellow);
+  }
+
+  .bubble.guide {
+    align-self: flex-start;
+    background: #fdfaf3;
+    color: var(--fair-ink);
+    border: 1px solid rgba(240, 90, 40, .2);
+    border-left: 4px solid var(--fair-orange);
+    border-bottom-left-radius: 2px;
+  }
+
+  .bubble.guide .bubble-who {
+    color: var(--fair-orange);
+  }
+
+  /* Chat entry form */
+  .chat-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    border-top: 1px solid var(--fair-line);
+    padding-top: 16px;
+  }
+
+  .chat-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1.5px solid rgba(23, 40, 63, .22);
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--fair-ink);
+    background: #fff;
+  }
+
+  .chat-form input:focus {
+    outline: 2px solid var(--fair-blue);
+    border-color: transparent;
+  }
+
+  .chat-form button {
+    border: 0;
+    border-radius: 6px;
+    padding: 0 20px;
+    background: var(--fair-yellow);
+    color: var(--fair-blue-dark);
+    font: 700 9px var(--mono);
+    letter-spacing: .1em;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease;
+  }
+
+  .chat-form button:hover {
+    background: #ffe16b;
+    transform: translateY(-1px);
+  }
+
+  .chat-form button:disabled {
+    opacity: .55;
+    cursor: wait;
+  }
+
+  .chat-status {
+    min-height: 18px;
+    margin: 8px 0 0;
+    color: var(--fair-orange);
+    font: 9px var(--mono);
+  }
+
+  .memory-note {
+    margin: 10px 0 0;
+    color: var(--fair-muted);
+    font-size: 9px;
+    line-height: 1.4;
+  }
+
+  /* Responsive adjustment matching your site's breakpoint */
+  @media (max-width: 760px) {
+    .guide-inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .chat-panel {
+      min-height: 420px;
+    }
+  }
 
 @media (prefers-reduced-motion: reduce) {
   *,
