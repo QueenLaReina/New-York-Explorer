@@ -1,0 +1,136 @@
+import React, { useState, useEffect } from "react";
+import { resizeImageToDataUrl } from "./utils/image";
+
+interface DishItem {
+  id: number;
+  title: string;
+  caption: string;
+  imageUrl: string;
+  createdAt: string;
+}
+
+export default function GalleryPage() {
+  const [dishes, setDishes] = useState<DishItem[]>([]);
+  const [title, setTitle] = useState("");
+  const [caption, setCaption] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/dishes")
+      .then((res) => res.json())
+      .then((data) => setDishes(data))
+      .catch((err) => console.error("Failed to load gallery", err));
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!file) {
+      setError("Please select an image.");
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      // Client-side shrink (Requirement 6)
+      const resizedDataUrl = await resizeImageToDataUrl(file, 1280);
+
+      const res = await fetch("/api/dishes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          caption,
+          image: resizedDataUrl,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to upload dish");
+      }
+
+      // Prepend the new dish to the top of the gallery
+      setDishes((prev) => [data, ...prev]);
+      setTitle("");
+      setCaption("");
+      setFile(null);
+    } catch (err: any) {
+      setError(err.message || "An error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div style={{ maxWidth: 1000, margin: "0 auto", padding: "1.5rem" }}>
+      <h1>City's Favorite Dish Gallery</h1>
+
+      {/* Upload Form */}
+      <form onSubmit={handleSubmit} style={{ marginBottom: "2rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+        {error && <div style={{ color: "red" }}>{error}</div>}
+        <input
+          type="text"
+          placeholder="Dish Title (required)"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <textarea
+          placeholder="Caption / Story (optional)"
+          value={caption}
+          onChange={(e) => setCaption(e.target.value)}
+        />
+        <input
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          onChange={(e) => setFile(e.target.files?.[0] || null)}
+          required
+        />
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Uploading..." : "Share Dish"}
+        </button>
+      </form>
+
+      {/* Gallery Grid (Requirement 7) */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+          gap: "1.5rem",
+        }}
+      >
+        {dishes.map((dish) => (
+          <div
+            key={dish.id}
+            style={{
+              border: "1px solid #ddd",
+              borderRadius: "8px",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <img
+              src={dish.imageUrl}
+              alt={dish.title}
+              style={{ width: "100%", height: "200px", objectFit: "cover" }}
+              loading="lazy"
+            />
+            <div style={{ padding: "0.75rem" }}>
+              <h3 style={{ margin: "0 0 0.5rem" }}>{dish.title}</h3>
+              {dish.caption && <p style={{ margin: "0 0 0.5rem", fontSize: "0.9rem" }}>{dish.caption}</p>}
+              <small style={{ color: "#777" }}>
+                {new Date(dish.createdAt).toLocaleDateString()}
+              </small>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
