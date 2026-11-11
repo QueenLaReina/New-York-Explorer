@@ -1,12 +1,10 @@
-import { Router, type IRouter } from "express";
-import healthRouter from "./health";
-import chatRouter from "./chat";
-import dishesRouter from "./dishes";
+import app from "./app";
+import { logger } from "./lib/logger";
 
-const router: IRouter = Router();
+const port = Number(process.env.PORT ?? 5000);
 
-router.use(healthRouter);
-router.use(chatRouter); // Activity 1: POST /api/chat
-router.use(dishesRouter); // Activity 2: /api/dishes
+app.listen(port, "0.0.0.0", () => {
+  logger.info({ port }, "API server listening");
+});
 
-export default router;
+export default app;

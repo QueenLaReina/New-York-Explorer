@@ -22,7 +22,7 @@ export const DishInspectionSchema = z.object({
 export type DishInspectionResult = z.infer<typeof DishInspectionSchema>;
 
 const model = new ChatGoogle({
-  modelName: "gemini-1.5-flash",
+  model: "gemini-1.5-flash",
   temperature: 0,
 });
 
