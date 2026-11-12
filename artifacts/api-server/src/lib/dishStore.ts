@@ -19,7 +19,9 @@ export type NewDish = Omit<StoredDish, "id" | "createdAt">;
 export interface DishStore {
   list(): Promise<StoredDish[]>;
   get(id: number): Promise<StoredDish | undefined>;
-  add(dish: NewDish): Promise<StoredDish>;
+  add(dish: NewDish): Promise<StoredDish>; 
+  update(id: number, details: { title: string; caption: string }): Promise<StoredDish | undefined>;
+
 }
 
 const dishes: StoredDish[] = [];
@@ -35,5 +37,20 @@ export const memoryDishStore: DishStore = {
     const saved = { ...dish, id: dishes.length + 1, createdAt: new Date() };
     dishes.push(saved);
     return saved;
+  },
+  async update(id, details) {
+    const index = dishes.findIndex((dish) => dish.id === id);
+    if (index === -1) {
+      return undefined;
+    }
+
+    const updated = {
+      ...dishes[index],
+      title: details.title,
+      caption: details.caption,
+    };
+
+    dishes[index] = updated;
+    return updated;
   },
 };

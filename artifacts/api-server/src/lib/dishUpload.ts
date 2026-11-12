@@ -7,6 +7,10 @@ export const DishUpload = z.object({
   caption: z.string().trim().max(280).optional(),
   image: z.string().min(1, "Choose a photo first."),
 });
+export const DishDetailsUpdate = z.object({
+  title: z.string().trim().min(1).max(80),
+  caption: z.string().trim().max(280),
+});
 
 export type DishUpload = z.infer<typeof DishUpload>;
 

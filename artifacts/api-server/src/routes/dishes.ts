@@ -1,5 +1,5 @@
 import { Router, type IRouter } from "express";
-import { DishUpload, parseImageDataUrl, toGalleryItem } from "../lib/dishUpload";
+import { DishUpload, DishDetailsUpdate, parseImageDataUrl, toGalleryItem } from "../lib/dishUpload";
 import { memoryDishStore } from "../lib/dishStore";
 import { dbDishStore } from "../lib/dishStore.db";
 
@@ -29,6 +29,28 @@ router.get("/dishes/:id/image", async (req, res) => {
 });
 
 // POST /api/dishes: drop off a new photo at the kitchen door
+router.put("/dishes/:id", async (req, res): Promise<void> => {
+  const id = Number(req.params.id);
+  if (!Number.isSafeInteger(id) || id < 1) {
+    res.status(400).json({ error: "Invalid photo ID." });
+    return;
+  }
+
+  const parsed = DishDetailsUpdate.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: "Provide a title and caption." });
+    return;
+  }
+
+  const updated = await store.update(id, parsed.data);
+  if (!updated) {
+    res.status(404).json({ error: "Photo not found." });
+    return;
+  }
+
+  res.json({ dish: toGalleryItem(updated) });
+});
+
 router.post("/dishes", async (req, res) => {
   const parsed = DishUpload.safeParse(req.body);
   if (!parsed.success) {

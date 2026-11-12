@@ -20,4 +20,16 @@ export const dbDishStore: DishStore = {
     const [row] = await db.insert(dishPhotosTable).values(dish).returning();
     return row;
   },
+  async update(id, details) {
+    if (!db) return memoryDishStore.update(id, details);
+    const [row] = await db
+      .update(dishPhotosTable)
+      .set({
+        title: details.title,
+        caption: details.caption,
+      })
+      .where(eq(dishPhotosTable.id, id))
+      .returning();
+    return row;
+  },
 };
