@@ -26,7 +26,11 @@ export function parseImageDataUrl(dataUrl: string): ParsedImage | { error: strin
     return { error: "Only JPEG, PNG, or WebP photos can be uploaded." };
   }
   const [, mimeType, base64] = match;
-  const bytes = Math.floor((base64.length * 3) / 4) - (base64.endsWith("==") ? 2 : base64.endsWith("=") ? 1 : 0);
+  const decoded = Buffer.from(base64, "base64");
+  if (decoded.length === 0 || decoded.toString("base64") !== base64) {
+    return { error: "The photo data is invalid. Please choose another image." };
+  }
+  const bytes = decoded.length;
   if (bytes > MAX_IMAGE_BYTES) {
     return { error: "That photo is too big. Keep it under 3 MB." };
   }

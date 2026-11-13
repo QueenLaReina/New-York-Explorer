@@ -1,5 +1,14 @@
-import { type FormEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useEffect, useState } from "react";
 import "./_group.css";
+
+type DishSubmission = {
+  id: number;
+  title: string;
+  caption: string;
+  inspectorNote: string | null;
+  createdAt: string;
+  imageUrl: string;
+};
 
 /**
  * Extracted from the live NYC guide as a visual baseline for this redesign.
@@ -9,6 +18,31 @@ export function Current() {
   const [draft, setDraft] = useState("");
   const [likes, setLikes] = useState<string[]>([]);
   const [fluttering, setFluttering] = useState(false);
+  const [dishTitle, setDishTitle] = useState("");
+  const [dishCaption, setDishCaption] = useState("");
+  const [dishFile, setDishFile] = useState<File | null>(null);
+  const [dishStatus, setDishStatus] = useState("");
+  const [communityDishes, setCommunityDishes] = useState<DishSubmission[]>([]);
+  const [dishListStatus, setDishListStatus] = useState("");
+  const [isSubmittingDish, setIsSubmittingDish] = useState(false);
+
+  useEffect(() => {
+    async function loadDishes() {
+      try {
+        const res = await fetch("/api/dishes");
+        if (!res.ok) {
+          throw new Error("Recent community plates could not be loaded.");
+        }
+        const data = (await res.json()) as { dishes: DishSubmission[] };
+        setCommunityDishes(data.dishes.slice(0, 3));
+      } catch (error) {
+        setDishListStatus(
+          error instanceof Error ? error.message : "Recent community plates could not be loaded.",
+        );
+      }
+    }
+    void loadDishes();
+  }, []);
 
   function addLike(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,6 +55,103 @@ export function Current() {
   function flutterBird() {
     setFluttering(false);
     window.requestAnimationFrame(() => setFluttering(true));
+  }
+
+  async function resizeImage(file: File): Promise<string> {
+    const allowed = ["image/jpeg", "image/png", "image/webp"];
+    if (!allowed.includes(file.type)) {
+      throw new Error("Only JPEG, PNG, or WebP images are supported.");
+    }
+
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          const maxDimension = 1280;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxDimension || height > maxDimension) {
+            if (width > height) {
+              height = Math.round((height * maxDimension) / width);
+              width = maxDimension;
+            } else {
+              width = Math.round((width * maxDimension) / height);
+              height = maxDimension;
+            }
+          }
+
+          const canvas = document.createElement("canvas");
+          canvas.width = width;
+          canvas.height = height;
+
+          const context = canvas.getContext("2d");
+          if (!context) {
+            reject(new Error("Could not load your photo."));
+            return;
+          }
+
+          context.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL(file.type, 0.88));
+        };
+        img.onerror = () => reject(new Error("Could not read your photo."));
+        img.src = String(reader.result);
+      };
+      reader.onerror = () => reject(new Error("Could not open your photo."));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function submitDish(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!dishTitle.trim() || !dishFile) {
+      setDishStatus("Add a dish name and upload a photo first.");
+      return;
+    }
+
+    try {
+      setIsSubmittingDish(true);
+      setDishStatus("");
+      const image = await resizeImage(dishFile);
+      const res = await fetch("/api/dishes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: dishTitle.trim(),
+          caption: dishCaption.trim(),
+          image,
+        }),
+      });
+
+      const data = (await res.json()) as { dish?: DishSubmission; error?: string };
+      if (!res.ok) {
+        throw new Error(data.error || "The dish could not be shared.");
+      }
+      if (!data.dish) {
+        throw new Error("The server did not return the saved dish.");
+      }
+
+      const savedDish = data.dish;
+      setCommunityDishes((current) => [savedDish, ...current].slice(0, 3));
+      setDishTitle("");
+      setDishCaption("");
+      setDishFile(null);
+      setDishStatus("Added to the community table.");
+      const input = document.getElementById("dish-photo") as HTMLInputElement | null;
+      if (input) input.value = "";
+    } catch (error) {
+      setDishStatus(error instanceof Error ? error.message : "The dish could not be shared.");
+    } finally {
+      setIsSubmittingDish(false);
+    }
+  }
+
+  function handleDishFileChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0] ?? null;
+    setDishFile(file);
+    setDishStatus("");
   }
 
   return (
@@ -37,6 +168,7 @@ export function Current() {
           <a href="#facts">Quick facts</a>
           <a href="#local">Local notes</a>
           <a href="#likes">Your list</a>
+          <a href="#community-plate">Community plate</a>
         </nav>
       </header>
 
@@ -181,6 +313,116 @@ export function Current() {
                 likes.map((like, index) => <li key={`${like}-${index}`}>{like}</li>)
               )}
             </ul>
+          </div>
+        </section>
+
+        <section className="community-section" id="community-plate" aria-labelledby="community-title">
+          <div className="community-copy">
+            <p className="section-kicker">05 / The community plate</p>
+            <h2 id="community-title">
+              Show us
+              <span>your plate.</span>
+            </h2>
+            <p>
+              Share your New York favorite: a classic slice, Chinatown dumplings, a bodega
+              sandwich, or whatever keeps your neighborhood buzzing. Add it to the community
+              table and give other curious New Yorkers a new place to start.
+            </p>
+          </div>
+
+          <div className="community-card">
+            <div className="community-accent" aria-hidden="true" />
+            <form className="community-form" onSubmit={submitDish}>
+              <div className="community-field">
+                <div className="community-row">
+                  <label htmlFor="dish-name">Dish name</label>
+                  <span>Required</span>
+                </div>
+                <input
+                  id="dish-name"
+                  type="text"
+                  value={dishTitle}
+                  onChange={(event) => setDishTitle(event.target.value)}
+                  placeholder="A classic slice in Brooklyn"
+                  required
+                  maxLength={80}
+                />
+              </div>
+
+              <div className="community-field">
+                <div className="community-row">
+                  <label htmlFor="dish-caption">Caption</label>
+                  <span>Optional</span>
+                </div>
+                <textarea
+                  id="dish-caption"
+                  value={dishCaption}
+                  onChange={(event) => setDishCaption(event.target.value)}
+                  placeholder="Where you found it, why it stuck with you..."
+                  maxLength={280}
+                />
+              </div>
+
+              <div className="community-field">
+                <div className="community-row">
+                  <label htmlFor="dish-photo">Photo</label>
+                  <span>Jpeg, png or webp, up to 3 mb</span>
+                </div>
+                <div className="community-upload">
+                  <input
+                    id="dish-photo"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    onChange={handleDishFileChange}
+                    required
+                  />
+                  <span className="upload-button">
+                    {dishFile ? dishFile.name : "choose a photo"}
+                  </span>
+                </div>
+              </div>
+
+              <button type="submit" className="community-submit" disabled={isSubmittingDish}>
+                {isSubmittingDish ? "Sharing..." : "Share this dish"}
+                <span aria-hidden="true">→</span>
+              </button>
+
+              {dishStatus && <p className="community-status" aria-live="polite">{dishStatus}</p>}
+            </form>
+          </div>
+          <div className="community-gallery">
+            <div className="community-gallery-heading">
+              <p className="section-kicker">Fresh from the five boroughs</p>
+              <h3>On the community table</h3>
+            </div>
+            {dishListStatus && <p className="community-status" role="status">{dishListStatus}</p>}
+            {communityDishes.length > 0 ? (
+              <div className="community-gallery-grid">
+                {communityDishes.map((dish) => (
+                  <article key={dish.id} className="community-dish-card">
+                    <div className="community-dish-accent" aria-hidden="true" />
+                    <img className="community-dish-image" src={dish.imageUrl} alt={dish.title} />
+                    <div className="community-dish-copy">
+                      <p className="community-dish-kicker">A New York food note</p>
+                      <h4>{dish.title}</h4>
+                      {dish.caption && <p className="community-dish-caption">{dish.caption}</p>}
+                      <div className="community-dish-footer">
+                        <time dateTime={dish.createdAt}>
+                          {new Date(dish.createdAt).toLocaleDateString()}
+                        </time>
+                        {dish.inspectorNote && <span>Reviewed</span>}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              !dishListStatus && (
+                <p className="community-gallery-empty">
+                  The table is set. Share a favorite New York bite to start the collection.
+                </p>
+              )
+            )}
           </div>
         </section>
       </main>

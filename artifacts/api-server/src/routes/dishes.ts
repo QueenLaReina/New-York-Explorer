@@ -2,6 +2,9 @@ import { Router, type IRouter } from "express";
 import { DishUpload, DishDetailsUpdate, parseImageDataUrl, toGalleryItem } from "../lib/dishUpload";
 import { memoryDishStore } from "../lib/dishStore";
 import { dbDishStore } from "../lib/dishStore.db";
+import { inspectDish, type DishInspectionResult } from "../agents/dishInspector";
+import { city } from "../city";
+import { logger } from "../lib/logger";
 
 // Step 1 used memoryDishStore (forgets on restart).
 // Step 2 switches to the Postgres pantry so photos survive restarts.
@@ -64,14 +67,37 @@ router.post("/dishes", async (req, res) => {
     return;
   }
 
-  // Activity 3 adds the inspector agent right here, before we save.
+  let inspection: DishInspectionResult;
+  try {
+    inspection = await inspectDish(
+      image.base64,
+      image.mimeType,
+      city.dish,
+      city.dishLooksLike,
+      city.notTheDish,
+    );
+  } catch (error) {
+    logger.error({ err: error }, "Dish photo inspection failed");
+    res.status(502).json({
+      error: "The photo inspector is temporarily unavailable. Please try again.",
+    });
+    return;
+  }
+
+  if (!inspection.isMatch || inspection.confidence < 0.7) {
+    res.status(422).json({
+      error: `Only ${city.dish} photos can be uploaded!`,
+      reason: `The inspector saw: ${inspection.whatISee}`,
+    });
+    return;
+  }
 
   const saved = await store.add({
     title: parsed.data.title,
     caption: parsed.data.caption ?? "",
     mimeType: image.mimeType,
     imageBase64: image.base64,
-    inspectorNote: null,
+    inspectorNote: `Inspector: ${inspection.whatISee} (${Math.round(inspection.confidence * 100)}% sure)`,
   });
   res.status(201).json({ dish: toGalleryItem(saved) });
 });

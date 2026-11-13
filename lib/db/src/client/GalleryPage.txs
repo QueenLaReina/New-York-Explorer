@@ -9,6 +9,174 @@ interface DishItem {
   createdAt: string;
 }
 
+const pageStyle: React.CSSProperties = {
+  minHeight: "100vh",
+  background: "#efe8df",
+  color: "#1e2c34",
+  fontFamily: "Georgia, 'Times New Roman', serif",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "40px 32px",
+};
+
+const shellStyle: React.CSSProperties = {
+  width: "100%",
+  maxWidth: "1180px",
+  minHeight: "720px",
+  display: "grid",
+  gridTemplateColumns: "1.1fr 0.9fr",
+  gap: "48px",
+  alignItems: "center",
+};
+
+const titleLabelStyle: React.CSSProperties = {
+  display: "inline-block",
+  fontFamily: "'Courier New', monospace",
+  letterSpacing: "0.28em",
+  textTransform: "uppercase",
+  fontSize: "12px",
+  color: "#3f5b62",
+  marginBottom: "18px",
+};
+
+const titleStyle: React.CSSProperties = {
+  fontSize: "clamp(4rem, 7vw, 7rem)",
+  lineHeight: "0.9",
+  letterSpacing: "-0.06em",
+  margin: 0,
+  color: "#1e2c34",
+  fontWeight: 700,
+};
+
+const accentTitleStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: "0.92em",
+  lineHeight: "0.82",
+  color: "#2c7f87",
+  fontWeight: 700,
+  fontStyle: "italic",
+  fontFamily: "Georgia, serif",
+};
+
+const leadStyle: React.CSSProperties = {
+  maxWidth: "520px",
+  lineHeight: 1.6,
+  fontSize: "18px",
+  color: "#3a3e42",
+  marginTop: "28px",
+};
+
+const formCardStyle: React.CSSProperties = {
+  width: "100%",
+  maxWidth: "560px",
+  background: "rgba(255, 255, 255, 0.15)",
+  border: "1px solid rgba(33, 38, 42, 0.18)",
+  boxShadow: "0 8px 20px rgba(24, 36, 42, 0.08)",
+  padding: "0 0 20px",
+  position: "relative",
+};
+
+const formAccentStyle: React.CSSProperties = {
+  height: "5px",
+  background: "#e87a5d",
+  width: "100%",
+};
+
+const formBodyStyle: React.CSSProperties = {
+  padding: "20px 24px 0",
+};
+
+const fieldStyle: React.CSSProperties = {
+  marginBottom: "18px",
+};
+
+const labelRowStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  marginBottom: "8px",
+  fontFamily: "'Courier New', monospace",
+  textTransform: "uppercase",
+  letterSpacing: "0.18em",
+  fontSize: "11px",
+  color: "#1e2c34",
+};
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  border: "none",
+  borderBottom: "2px solid rgba(26, 39, 44, 0.9)",
+  background: "transparent",
+  padding: "8px 0 10px",
+  fontSize: "17px",
+  fontFamily: "Georgia, serif",
+  color: "#1d2a32",
+  outline: "none",
+};
+
+const textareaStyle: React.CSSProperties = {
+  ...inputStyle,
+  resize: "vertical",
+  minHeight: "48px",
+  borderBottom: "2px solid rgba(26, 39, 44, 0.9)",
+};
+
+const uploadBoxStyle: React.CSSProperties = {
+  border: "2px dashed rgba(26, 39, 44, 0.55)",
+  minHeight: "174px",
+  background: "rgba(255, 255, 255, 0.12)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
+  marginTop: "8px",
+  overflow: "hidden",
+};
+
+const fileInputStyle: React.CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  opacity: 0,
+  cursor: "pointer",
+};
+
+const uploadButtonStyle: React.CSSProperties = {
+  background: "#173a4c",
+  color: "#f8f3ee",
+  border: "none",
+  padding: "0.9rem 1.25rem",
+  fontFamily: "'Courier New', monospace",
+  fontSize: "12px",
+  letterSpacing: "0.16em",
+  textTransform: "lowercase",
+  cursor: "pointer",
+  boxShadow: "0 2px 0 rgba(23, 58, 76, 0.4)",
+};
+
+const submitButtonStyle: React.CSSProperties = {
+  background: "#e87a5d",
+  color: "#f7f1ea",
+  border: "none",
+  width: "100%",
+  marginTop: "18px",
+  padding: "18px 18px",
+  fontFamily: "'Courier New', monospace",
+  fontSize: "15px",
+  letterSpacing: "0.14em",
+  textTransform: "lowercase",
+  cursor: "pointer",
+  fontWeight: 700,
+};
+
+const metaTextStyle: React.CSSProperties = {
+  color: "#6b5f55",
+  fontFamily: "'Courier New', monospace",
+  letterSpacing: "0.14em",
+  textTransform: "uppercase",
+  fontSize: "10px",
+};
+
 export default function GalleryPage() {
   const [dishes, setDishes] = useState<DishItem[]>([]);
   const [title, setTitle] = useState("");
@@ -36,7 +204,6 @@ export default function GalleryPage() {
     try {
       setIsSubmitting(true);
 
-      // Client-side shrink (Requirement 6)
       const resizedDataUrl = await resizeImageToDataUrl(file, 1280);
 
       const res = await fetch("/api/dishes", {
@@ -54,7 +221,6 @@ export default function GalleryPage() {
         throw new Error(data.error || "Failed to upload dish");
       }
 
-      // Prepend the new dish to the top of the gallery
       setDishes((prev) => [data, ...prev]);
       setTitle("");
       setCaption("");
@@ -67,69 +233,82 @@ export default function GalleryPage() {
   };
 
   return (
-    <div style={{ maxWidth: 1000, margin: "0 auto", padding: "1.5rem" }}>
-      <h1>City's Favorite Dish Gallery</h1>
+    <div style={pageStyle}>
+      <div style={shellStyle}>
+        <section>
+          <div style={titleLabelStyle}>01 / the community plate</div>
+          <h1 style={titleStyle}>
+            Show us
+            <span style={accentTitleStyle}>your plate.</span>
+          </h1>
 
-      {/* Upload Form */}
-      <form onSubmit={handleSubmit} style={{ marginBottom: "2rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-        {error && <div style={{ color: "red" }}>{error}</div>}
-        <input
-          type="text"
-          placeholder="Dish Title (required)"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Caption / Story (optional)"
-          value={caption}
-          onChange={(e) => setCaption(e.target.value)}
-        />
-        <input
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          onChange={(e) => setFile(e.target.files?.[0] || null)}
-          required
-        />
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Uploading..." : "Share Dish"}
-        </button>
-      </form>
+          <p style={leadStyle}>
+            Share your Viet-Cajun crawfish. Our AI inspector checks each photo before it joins
+            the table. Photos go to Google for inspection; only matches with at least 70%
+            confidence are saved. Al can make mistakes.
+          </p>
+        </section>
 
-      {/* Gallery Grid (Requirement 7) */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-          gap: "1.5rem",
-        }}
-      >
-        {dishes.map((dish) => (
-          <div
-            key={dish.id}
-            style={{
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <img
-              src={dish.imageUrl}
-              alt={dish.title}
-              style={{ width: "100%", height: "200px", objectFit: "cover" }}
-              loading="lazy"
-            />
-            <div style={{ padding: "0.75rem" }}>
-              <h3 style={{ margin: "0 0 0.5rem" }}>{dish.title}</h3>
-              {dish.caption && <p style={{ margin: "0 0 0.5rem", fontSize: "0.9rem" }}>{dish.caption}</p>}
-              <small style={{ color: "#777" }}>
-                {new Date(dish.createdAt).toLocaleDateString()}
-              </small>
+        <section style={formCardStyle}>
+          <div style={formAccentStyle} />
+          <form onSubmit={handleSubmit} style={formBodyStyle}>
+            {error && <div style={{ color: "#b5482b", marginBottom: 12, fontSize: 14 }}>{error}</div>}
+
+            <div style={fieldStyle}>
+              <div style={labelRowStyle}>
+                <label htmlFor="dish-name">Dish name</label>
+                <span style={metaTextStyle}>Required</span>
+              </div>
+              <input
+                id="dish-name"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Garlic-butter crawfish in Houston"
+                style={inputStyle}
+                required
+              />
             </div>
-          </div>
-        ))}
+
+            <div style={fieldStyle}>
+              <div style={labelRowStyle}>
+                <label htmlFor="dish-caption">Caption</label>
+                <span style={metaTextStyle}>Optional</span>
+              </div>
+              <textarea
+                id="dish-caption"
+                value={caption}
+                onChange={(e) => setCaption(e.target.value)}
+                placeholder="Where you found it, why it stuck with you..."
+                style={textareaStyle}
+              />
+            </div>
+
+            <div style={fieldStyle}>
+              <div style={labelRowStyle}>
+                <label htmlFor="dish-photo">Photo</label>
+                <span style={metaTextStyle}>Jpeg, png or webp, up to 3 mb</span>
+              </div>
+              <div style={uploadBoxStyle}>
+                <input
+                  id="dish-photo"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={(e) => setFile(e.target.files?.[0] || null)}
+                  required
+                  style={fileInputStyle}
+                />
+                <button type="button" style={uploadButtonStyle}>
+                  choose a photo
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" disabled={isSubmitting} style={submitButtonStyle}>
+              {isSubmitting ? "Uploading..." : "Share this dish"}
+            </button>
+          </form>
+        </section>
       </div>
     </div>
   );

@@ -466,11 +466,15 @@ a { color: inherit; }
 .bird-button {
   position: relative;
   z-index: 1;
+  display: grid;
+  width: 190px;
+  height: 190px;
   padding: 10px;
   border: 2px solid rgba(29, 95, 168, .16);
   border-radius: 50%;
   background: rgba(255, 255, 255, .8);
   cursor: pointer;
+  place-items: center;
   transition: transform .2s ease, border-color .2s ease;
 }
 .bird-button:hover {
@@ -479,9 +483,10 @@ a { color: inherit; }
 }
 .bird {
   display: block;
-  width: 170px;
-  height: 150px;
-  object-fit: contain;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .bird-button:focus-visible {
   outline: 3px solid var(--fair-orange);
@@ -671,6 +676,290 @@ a { color: inherit; }
   .list-form input { min-height: 44px; }
   .list-form button { min-height: 44px; }
   .footer { flex-direction: column; gap: 8px; }
+}
+
+.nyc-midway-divider {
+  display: grid;
+  min-height: 20px;
+  place-items: center;
+  background: var(--fair-blue-dark);
+}
+.nyc-midway-divider span {
+  width: 52px;
+  height: 3px;
+  background: var(--fair-yellow);
+}
+.nyc-plate-section {
+  padding: 5rem 2rem;
+  color: #14366e;
+  background: #ebf2f7;
+  border-top: 5px solid var(--fair-yellow);
+  font-family: var(--body);
+}
+.nyc-container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.nyc-plate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.nyc-eyebrow {
+  display: block;
+  margin-bottom: .75rem;
+  color: var(--fair-orange);
+  font: 700 .72rem var(--mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.nyc-heading {
+  margin: 0 0 1.5rem;
+  color: #14366e;
+  line-height: 1.05;
+}
+.nyc-serif {
+  display: block;
+  font: 700 clamp(2.75rem, 4.5vw, 3.75rem)/1.05 var(--display);
+  letter-spacing: -.02em;
+}
+.nyc-script {
+  display: block;
+  margin-left: .35rem;
+  color: #14366e;
+  font: 400 clamp(3.5rem, 5.5vw, 4.75rem)/1 var(--script);
+}
+.nyc-lead {
+  max-width: 44ch;
+  color: #334155;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.nyc-form-card {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(20, 54, 110, .08);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(20, 54, 110, .08);
+}
+.nyc-card-accent {
+  width: 100%;
+  height: 6px;
+  background: var(--fair-yellow);
+}
+.nyc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2.25rem;
+}
+.nyc-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: .5rem;
+}
+.nyc-label-row label {
+  color: #14366e;
+  font: 700 .75rem var(--mono);
+  letter-spacing: .08em;
+}
+.nyc-meta {
+  color: #64748b;
+  font: .65rem var(--mono);
+  letter-spacing: .08em;
+}
+.nyc-field input[type="text"],
+.nyc-field textarea {
+  width: 100%;
+  padding: .6rem 0;
+  color: #14366e;
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px solid #cbd5e1;
+  font: .95rem var(--body);
+  transition: border-color .2s ease;
+}
+.nyc-field textarea {
+  resize: vertical;
+}
+.nyc-field input[type="text"]:focus,
+.nyc-field textarea:focus {
+  outline: none;
+  border-bottom-color: #14366e;
+}
+.nyc-field input::placeholder,
+.nyc-field textarea::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+}
+.nyc-dropzone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #f8fafc;
+  border: 1.5px dashed #94a3b8;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.nyc-dropzone:hover,
+.nyc-dropzone:focus-within {
+  background: #ebf2f7;
+  border-color: #14366e;
+}
+.nyc-btn-secondary {
+  padding: .65rem 1.25rem;
+  color: #fff;
+  background: #14366e;
+  border-radius: 999px;
+  font: .75rem var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.nyc-btn-primary {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: .5rem;
+  padding: .85rem 1.75rem;
+  color: #14366e;
+  background: var(--fair-yellow);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(252, 209, 22, .35);
+  font: 700 .95rem var(--body);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.nyc-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(252, 209, 22, .5);
+}
+.nyc-btn-primary:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+.nyc-form-status {
+  min-height: 1em;
+  margin: -.75rem 0 0;
+  color: #14366e;
+  font: .75rem var(--mono);
+  line-height: 1.6;
+}
+.nyc-photo-note {
+  margin: -.75rem 0 0;
+  color: #64748b;
+  font: .7rem/1.6 var(--body);
+}
+.nyc-table-footer {
+  margin-top: 4.5rem;
+}
+.nyc-table-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.nyc-table-header .nyc-eyebrow {
+  margin-bottom: 0;
+}
+.nyc-script-sub {
+  margin: 0;
+  color: #14366e;
+  font: 400 2.25rem/1 var(--script);
+}
+.nyc-divider {
+  height: 1px;
+  margin: .85rem 0 1.25rem;
+  background: rgba(20, 54, 110, .15);
+}
+.nyc-empty-state {
+  margin: 0;
+  color: #14366e;
+  font: .95rem var(--body);
+}
+.nyc-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.nyc-gallery-card {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(20, 54, 110, .1);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(20, 54, 110, .06);
+}
+.nyc-gallery-card-accent {
+  height: 5px;
+  background: var(--fair-yellow);
+}
+.nyc-gallery-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.55 / 1;
+  object-fit: cover;
+  background: #dce7ef;
+}
+.nyc-gallery-card-copy {
+  padding: 1rem 1.1rem;
+}
+.nyc-gallery-card-kicker {
+  margin: 0 0 .4rem;
+  color: var(--fair-orange);
+  font: .65rem var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.nyc-gallery-card-copy h4 {
+  margin: 0;
+  color: #14366e;
+  font: 600 1.25rem/1.3 var(--display);
+}
+.nyc-gallery-card-caption {
+  min-height: 2.8em;
+  margin: .6rem 0 .9rem;
+  color: #334155;
+  font-size: .85rem;
+  line-height: 1.6;
+}
+.nyc-gallery-card-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  padding-top: .65rem;
+  color: #64748b;
+  border-top: 1px solid #cbd5e1;
+  font: .65rem var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.nyc-gallery-card-note {
+  margin: .75rem 0 0;
+  padding-top: .65rem;
+  color: #14366e;
+  border-top: 1px solid #cbd5e1;
+  font-size: .75rem;
+  line-height: 1.5;
+}
+@media (max-width: 820px) {
+  .nyc-plate-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 760px) {
+  .nyc-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .nyc-plate-section { padding: 3.5rem 1.25rem; }
+  .nyc-form { padding: 1.5rem; }
+  .nyc-table-header { align-items: flex-start; flex-direction: column; }
+  .nyc-gallery-grid { grid-template-columns: 1fr; }
 }
 
   /* ===== Activity 1: Ask the City Guide (Styled for NYC State Fair Theme) ===== */
@@ -945,6 +1234,255 @@ a { color: inherit; }
       min-height: 420px;
     }
   }
+
+#inspiration-grid.nyc-fair-inspo {
+  position: relative;
+  padding: 0 0 5.5rem;
+  color: var(--fair-blue-dark);
+  background: #ebf2f7;
+  border-top: 6px solid var(--fair-yellow);
+  border-bottom: 6px solid var(--fair-blue);
+  font-family: var(--body);
+}
+#inspiration-grid .nyc-fair-ribbon-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 4.5rem;
+  padding: .65rem 2rem;
+  color: var(--fair-yellow);
+  background: var(--fair-blue-dark);
+  font: 700 .7rem var(--mono);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+#inspiration-grid .nyc-container {
+  max-width: 1188px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+#inspiration-grid .nyc-fair-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+#inspiration-grid .nyc-eyebrow {
+  display: block;
+  margin-bottom: .65rem;
+  color: var(--fair-orange);
+  font: 700 .74rem var(--mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+#inspiration-grid .nyc-heading {
+  margin: 0 0 1rem;
+  color: var(--fair-blue-dark);
+  line-height: 1.02;
+}
+#inspiration-grid .nyc-heading .nyc-serif {
+  display: inline;
+  font: 700 clamp(2.85rem, 4.8vw, 4rem)/1.02 var(--display);
+  letter-spacing: -.02em;
+}
+#inspiration-grid .nyc-heading .nyc-script {
+  display: inline;
+  margin-left: .35rem;
+  color: var(--fair-blue-dark);
+  font: 400 clamp(3.6rem, 5.8vw, 5rem)/1 var(--script);
+}
+#inspiration-grid .nyc-lead {
+  max-width: 50ch;
+  margin: 0;
+  color: #334155;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+#inspiration-grid .nyc-fair-wheel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .85rem 1.75rem;
+  color: var(--fair-blue-dark);
+  background: var(--fair-yellow);
+  border: 2px solid var(--fair-blue-dark);
+  border-radius: 999px;
+  box-shadow: 0 5px 0 var(--fair-blue-dark);
+  font: 700 .98rem var(--body);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+#inspiration-grid .nyc-fair-wheel-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--fair-blue-dark);
+  background: #ffe047;
+}
+#inspiration-grid .nyc-fair-wheel-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--fair-blue-dark);
+}
+#inspiration-grid .nyc-fair-wheel-btn:disabled {
+  opacity: .75;
+  cursor: wait;
+}
+#inspiration-grid .nyc-btn-badge {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  color: var(--fair-yellow);
+  background: var(--fair-blue-dark);
+  border-radius: 50%;
+  font-size: .72rem;
+}
+#inspiration-grid .nyc-arrow {
+  color: var(--fair-orange);
+}
+#inspiration-grid .nyc-fair-ticket-box {
+  position: relative;
+  overflow: hidden;
+  padding: 2.25rem 2.75rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(20, 54, 110, .08);
+  outline: 2px dashed rgba(20, 54, 110, .25);
+  outline-offset: -10px;
+}
+#inspiration-grid .nyc-fair-ticket-box[hidden] {
+  display: none;
+}
+#inspiration-grid .nyc-ticket-notch-left,
+#inspiration-grid .nyc-ticket-notch-right {
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  background: #ebf2f7;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+#inspiration-grid .nyc-ticket-notch-left { left: -12px; }
+#inspiration-grid .nyc-ticket-notch-right { right: -12px; }
+#inspiration-grid .nyc-ticket-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+#inspiration-grid .nyc-orange-stamp {
+  padding: .4rem .85rem;
+  color: #fff;
+  background: var(--fair-orange);
+  border-radius: 6px;
+  font: 700 .7rem var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+#inspiration-grid .nyc-ticket-text {
+  margin: 0;
+  color: var(--fair-blue-dark);
+  font-size: 1rem;
+  font-style: italic;
+}
+#inspiration-grid .nyc-fair-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+  gap: 2rem;
+}
+#inspiration-grid .nyc-fair-card {
+  position: relative;
+  display: flex;
+  min-height: 245px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.75rem 2rem 1.5rem;
+  background: #fff;
+  border-top: 6px solid var(--fair-yellow);
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(20, 54, 110, .08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+#inspiration-grid .nyc-fair-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(20, 54, 110, .13);
+}
+#inspiration-grid .nyc-fair-card-number {
+  color: var(--fair-orange);
+  font: 700 .68rem var(--mono);
+  letter-spacing: .12em;
+}
+#inspiration-grid .nyc-fair-card-image-wrap {
+  width: 100%;
+  margin-top: 1rem;
+}
+#inspiration-grid .nyc-fair-card-image {
+  display: block;
+  width: 100%;
+  height: 170px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+#inspiration-grid .nyc-fair-card-image-source {
+  display: inline-block;
+  margin-top: .35rem;
+  color: var(--fair-muted);
+  font: .6rem var(--mono);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+#inspiration-grid .nyc-fair-card-image-source:hover {
+  color: var(--fair-blue-dark);
+}
+#inspiration-grid .nyc-fair-card h3 {
+  margin: .8rem 0 .45rem;
+  color: var(--fair-blue-dark);
+  font: 600 clamp(1.35rem, 2.5vw, 1.7rem)/1.2 var(--display);
+}
+#inspiration-grid .nyc-fair-card-borough {
+  margin: 0;
+  color: var(--fair-blue);
+  font: 700 .68rem var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+#inspiration-grid .nyc-fair-card-description {
+  margin: 1rem 0 1.25rem;
+  color: var(--fair-muted);
+  font-size: .82rem;
+  line-height: 1.7;
+}
+#inspiration-grid .nyc-fair-card-tip {
+  margin-top: auto;
+  padding: .4rem .65rem;
+  color: var(--fair-blue-dark);
+  background: #ebf2f7;
+  border-radius: 999px;
+  font: .64rem var(--mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+@media (max-width: 760px) {
+  #inspiration-grid.nyc-fair-inspo { padding-bottom: 3.5rem; }
+  #inspiration-grid .nyc-fair-ribbon-bar {
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    padding: .75rem 1rem;
+    text-align: center;
+  }
+  #inspiration-grid .nyc-fair-ribbon-bar span:nth-child(2) { width: 100%; }
+  #inspiration-grid .nyc-fair-header { align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  #inspiration-grid .nyc-container { padding: 0 18px; }
+  #inspiration-grid .nyc-fair-wheel-btn { width: 100%; justify-content: center; }
+  #inspiration-grid .nyc-fair-ticket-box { padding: 2rem 1.5rem; }
+  #inspiration-grid .nyc-fair-card { min-height: 220px; padding: 1.5rem; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,

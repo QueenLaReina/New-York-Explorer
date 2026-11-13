@@ -27,6 +27,8 @@
           <a href="#local">Local notes</a>
           <a href="#likes">Your list</a>
           <a href="#ask-the-guide">Ask a local</a>
+          <a href="#community-plate">Community plate</a>
+          <a href="#inspiration-grid">Inspiration</a>
         </nav>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="true" aria-label="Toggle navigation">
           <span></span><span></span><span></span>
@@ -82,7 +84,7 @@
           <article class="feature food-copy" aria-labelledby="food-title">
             <p class="section-kicker">02 / An essential bite</p>
             <div class="food-visual">
-              <img src="./images/nyc-pizza.svg" alt="Illustration of a New York-style pizza slice with tomato sauce, melted cheese, and basil" />
+              <img src="./images/nyc-pizza-photo.jpg" alt="A New York-style cheese slice served on a paper plate at a pizzeria" />
               <span class="food-tag">Fold it, don't overthink it</span>
             </div>
             
@@ -93,7 +95,7 @@
             <p class="section-kicker">03 / A little nature</p>
             <div class="bird-stage">
               <button class="bird-button" id="bird-button" type="button" aria-label="Make the eastern bluebird flutter">
-                <img class="bird" id="bluebird" src="./images/eastern-bluebird.svg" alt="Eastern bluebird, New York State's state bird, with vivid blue wings and a warm orange breast" />
+                <img class="bird" id="bluebird" src="./images/eastern-bluebird-photo.jpg" alt="Eastern bluebird perched on a branch, with bright blue wings and a warm orange breast" />
               </button>
             </div>
             
@@ -165,7 +167,129 @@
             </div>
           </div>
         </section>
-        
+
+        <div class="nyc-midway-divider" role="separator" aria-label="End of Ask the City, start of Blue-Ribbon Bites">
+          <span aria-hidden="true"></span>
+        </div>
+
+        <section id="community-plate" class="nyc-plate-section" aria-labelledby="community-title">
+          <div class="nyc-container">
+            <div class="nyc-plate-grid">
+              <div class="nyc-plate-intro">
+                <span class="nyc-eyebrow">06 / THE FIVE-BOROUGH MIDWAY</span>
+                <h2 class="nyc-heading" id="community-title">
+                  <span class="nyc-serif">Blue-Ribbon</span>
+                  <span class="nyc-script">Bites.</span>
+                </h2>
+                <p class="nyc-lead">
+                  Step right up and put your neighborhood on the map. Whether it’s a corner
+                  slice that deserves a trophy, late-night dumplings worth the train fare,
+                  or your go-to bodega order, pin your prize-winning pick to the board so
+                  fellow explorers know where the real magic happens.
+                </p>
+              </div>
+
+              <div class="nyc-form-card">
+                <div class="nyc-card-accent"></div>
+                <form id="dish-upload-form" class="nyc-form">
+                  <div class="nyc-field">
+                    <div class="nyc-label-row">
+                      <label for="dish-name">YOUR PRIZE-WINNING PICK</label>
+                      <span class="nyc-meta">REQUIRED</span>
+                    </div>
+                    <input type="text" id="dish-name" name="dishName" maxlength="80"
+                      placeholder="e.g., Chopped cheese on a hero, or a fresh glazed cruller"
+                      required>
+                  </div>
+
+                  <div class="nyc-field">
+                    <div class="nyc-label-row">
+                      <label for="dish-caption">THE BARKER’S PITCH</label>
+                      <span class="nyc-meta">OPTIONAL</span>
+                    </div>
+                    <textarea id="dish-caption" name="caption" rows="2" maxlength="280"
+                      placeholder="Give us the scoop—which block, and why does it take home the blue ribbon?"></textarea>
+                  </div>
+
+                  <div class="nyc-field">
+                    <div class="nyc-label-row">
+                      <label for="dish-photo">SNAP A SOUVENIR PHOTO</label>
+                      <span class="nyc-meta">JPEG, PNG OR WEBP · UP TO 3 MB</span>
+                    </div>
+                    <label for="dish-photo" class="nyc-dropzone">
+                      <input type="file" id="dish-photo" name="photo"
+                        accept="image/jpeg,image/png,image/webp" hidden required>
+                      <span class="nyc-btn-secondary" id="dish-file-name">Pick a snapshot</span>
+                    </label>
+                  </div>
+
+                  <button type="submit" class="nyc-btn-primary" id="dish-submit">
+                    Pin it to the board <span aria-hidden="true">→</span>
+                  </button>
+                  <p class="nyc-photo-note">Photos are sent to Google Gemini for inspection. AI can make mistakes.</p>
+                  <p class="nyc-form-status" id="dish-status" aria-live="polite"></p>
+                </form>
+              </div>
+            </div>
+
+            <div class="nyc-table-footer">
+              <div class="nyc-table-header">
+                <span class="nyc-eyebrow">STRAIGHT FROM THE GRANDSTAND</span>
+                <h3 class="nyc-script-sub">On the Winner’s Table</h3>
+              </div>
+              <div class="nyc-divider"></div>
+              <p class="nyc-empty-state" id="dish-gallery-status" role="status">
+                — The booths are open! Drop your favorite local bite above to crown our first neighborhood champion.
+              </p>
+              <div class="nyc-gallery-grid" id="dish-gallery" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="inspiration-grid" class="nyc-fair-inspo" aria-labelledby="inspiration-title">
+          <div class="nyc-fair-ribbon-bar" aria-label="New York City midway">
+            <span aria-hidden="true">★ NEW YORK CITY MIDWAY ★</span>
+            <span>FRESH PICKS FROM ALL FIVE BOROUGHS</span>
+            <span aria-hidden="true">★ STEP RIGHT UP ★</span>
+          </div>
+
+          <div class="nyc-container">
+            <div class="nyc-fair-header">
+              <div class="nyc-fair-title-block">
+                <span class="nyc-eyebrow">07 / THE GRANDSTAND PAVILION</span>
+                <h2 class="nyc-heading" id="inspiration-title">
+                  <span class="nyc-serif">Midway</span>
+                  <span class="nyc-script">Inspiration.</span>
+                </h2>
+                <p class="nyc-lead">
+                  Fresh ways to enjoy New York City’s signature slice—plus prize-worthy
+                  bites and neighborhood spins from across the five boroughs.
+                </p>
+              </div>
+
+              <button id="refresh-inspiration-btn" class="nyc-fair-wheel-btn" type="button">
+                <span class="nyc-btn-badge" aria-hidden="true">★</span>
+                <span>Spin for Fresh Picks</span>
+                <span class="nyc-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <div id="inspiration-loading" class="nyc-fair-ticket-box" role="status">
+              <span class="nyc-ticket-notch-left" aria-hidden="true"></span>
+              <span class="nyc-ticket-notch-right" aria-hidden="true"></span>
+              <div class="nyc-ticket-content">
+                <span class="nyc-orange-stamp">STEP RIGHT UP · ADMIT ONE</span>
+                <p class="nyc-ticket-text">
+                  Warming up the griddles and pulling fresh New York dish inspiration...
+                </p>
+              </div>
+            </div>
+
+            <div id="inspiration-cards" class="nyc-fair-cards-grid"
+              aria-live="polite" aria-busy="true"></div>
+          </div>
+        </section>
+
       </main>
 
       <footer class="footer">
@@ -176,5 +300,7 @@
     </div>
     <script type="module" src="./script.js"></script>
     <script type="module" src="./chat.js"></script>
+    <script type="module" src="./dish-gallery.js"></script>
+    <script type="module" src="./inspiration.js"></script>
   </body>
 </html>
